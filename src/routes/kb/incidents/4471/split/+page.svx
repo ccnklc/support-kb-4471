@@ -30,10 +30,11 @@ is computed from the exports in <code>src/lib/data</code> when the page is built
 ## How each report was placed
 
 1. One id, one report: the export pages overlap, so repeats are dropped (`uniqueById`).
-2. The desk's reading comes first. Reports in `desk-notes.json` → `oneDayMove` describe a date
-   that moved by one day, not a day and month swapped: `one-day`.
-3. Every other report gets its cause from its tenant, never from intake's tag (`causeOf` in
+2. Every report is filed under its cause by tenant, never by intake's tag (`causeOf` in
    `causes.ts`): booking-v3 form reports from day-first tenants are `hint`, the rest `parser`.
+3. The desk's reading: reports in `desk-notes.json` → `oneDayMove` describe a date that moved by
+   one day, not a day and month swapped. As on the [#4471](/kb/incidents/4471) table, they stay
+   counted where they are filed and are counted again under `one-day`.
 
 The logic is `#lib/kb/problems.ts`. Intake's tag (`meta.intakeTag`) is a guess from the
 reporter's browser and disagrees with the tenant often; it is not used.
@@ -60,8 +61,8 @@ form reports from booking-v3 tenants land here.
 These dates did not swap. They moved by one day: "Invite says Tuesday 12 May. Calendar says
 Monday 11 May" (R-41202), "Client in Lisbon got Tuesday. Client in Toronto got Monday. Same
 meeting." (R-41344), "Every booking in June is one day off" (R-41209). That points at time zones,
-not date order. The parser fix will not change them, and they were counted under `parser` on the
-#4471 page.
+not date order. The parser fix will not change them. The desk files them under `parser` by tenant,
+so they count there too.
 
 <ProblemReports problem="one-day" />
 

@@ -1,6 +1,8 @@
-// Which problem a report in a merged ticket really is. causes.ts tells the two date-order bugs
-// apart by tenant; the desk's own reading (desk-notes.json) marks the reports that are not a
-// date-order bug at all: the date moved by one day. Pages explain it; this file is what runs.
+// The problems in a merged ticket, counted the desk's way. causes.ts files every report under its
+// cause by tenant; the desk's own reading (desk-notes.json) marks the reports that are not a
+// date-order bug at all: the date moved by one day. As in CauseTable (`readAs`), those stay counted
+// where they are filed and are counted again under the problem they were read as.
+// Pages explain it; this file is what runs.
 // Plain relative imports with extensions, so scripts/sync-issues.ts runs the same code in Node.
 import { causeOf, uniqueById, type Report, type Tenant } from './causes.ts';
 
@@ -29,13 +31,16 @@ export type ProblemGroup = {
   channels: Record<string, number>;
   firstSeen: string;
   lastSeen: string;
+  // Reports in this group that are also counted under another problem: problem → count.
+  alsoIn: Partial<Record<Problem, number>>;
 };
 
 export type Split = { ticket: number; total: number; groups: ProblemGroup[]; unplaced: Report[] };
 
-export function problemOf(r: Report, t: Tenant | undefined, oneDay: readonly string[]): Problem | null {
-  if (oneDay.includes(r.id)) return 'one-day';
-  return causeOf(r, t);
+// Every problem a report counts under: its cause by tenant, plus how the desk read it.
+export function problemsOf(r: Report, t: Tenant | undefined, oneDay: readonly string[]): Problem[] {
+  const cause = causeOf(r, t);
+  return [...(cause ? [cause] : []), ...(oneDay.includes(r.id) ? (['one-day'] as const) : [])];
 }
 
 export function splitTicket(
@@ -47,7 +52,7 @@ export function splitTicket(
   const merged = uniqueById(all).filter((r) => r.mergedInto === ticket);
   const groups: ProblemGroup[] = [];
   for (const problem of PROBLEMS) {
-    const rs = merged.filter((r) => problemOf(r, tenantOf(r), oneDay) === problem);
+    const rs = merged.filter((r) => problemsOf(r, tenantOf(r), oneDay).includes(problem));
     if (!rs.length) continue;
     const days = rs.map((r) => r.receivedAt.slice(0, 10)).sort();
     groups.push({
@@ -57,8 +62,12 @@ export function splitTicket(
       channels: rs.reduce<Record<string, number>>((n, r) => ({ ...n, [r.channel]: (n[r.channel] ?? 0) + 1 }), {}),
       firstSeen: days[0],
       lastSeen: days[days.length - 1],
+      alsoIn: rs.reduce<Partial<Record<Problem, number>>>((n, r) => {
+        for (const q of problemsOf(r, tenantOf(r), oneDay)) if (q !== problem) n[q] = (n[q] ?? 0) + 1;
+        return n;
+      }, {}),
     });
   }
-  const unplaced = merged.filter((r) => problemOf(r, tenantOf(r), oneDay) === null);
+  const unplaced = merged.filter((r) => problemsOf(r, tenantOf(r), oneDay).length === 0);
   return { ticket, total: merged.length, groups: groups.sort((a, b) => b.reports.length - a.reports.length), unplaced };
 }

@@ -9,7 +9,7 @@
       .join(' · ');
 </script>
 
-<p class="sum">
+<p class="sum" data-total={split.total}>
   <strong>{split.total}</strong> reports merged into #{split.ticket} ·
   <strong>{split.groups.length}</strong> problems{#if split.unplaced.length} · <strong>{split.unplaced.length}</strong> unplaced{/if}
 </p>
@@ -23,7 +23,10 @@
       {@const issue = issueOf(g.problem)}
       <tr>
         <td><code>{g.problem}</code><br /><span class="what">{PROBLEM_INFO[g.problem].title}</span></td>
-        <td><strong>{g.reports.length}</strong></td>
+        <td>
+          <strong>{g.reports.length}</strong>
+          {#each Object.entries(g.alsoIn) as [q, n] (q)}<br /><span class="what">{n} also under <code>{q}</code></span>{/each}
+        </td>
         <td class="tags">{channels(g.channels)}</td>
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
@@ -33,8 +36,12 @@
   </tbody>
 </table>
 
+<p class="note">Each report counts where the desk files it, by tenant. A report the desk read as another
+problem is counted there too, so the rows add up to more than the reports.</p>
+
 <style>
   .sum { font-size: 1.1rem; }
   .what { color: var(--muted); font-size: 0.85em; }
   .tags { color: var(--muted); font-size: 0.85em; }
+  .note { color: var(--muted); font-size: 0.85em; }
 </style>
