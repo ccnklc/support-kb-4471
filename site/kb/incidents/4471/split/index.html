@@ -9,22 +9,21 @@
 		<link href="../../../../_app/immutable/chunks/CG-acO8U.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/4ZmiEDEE.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/HhHmny_U.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/entry/app.BY1ewYmA.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/entry/app.Bw_mzS5y.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/nodes/0.PWNwvTYq.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/nodes/5.8pG1RYeA.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/chunks/DmZnempA.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/nodes/5.DbFgm912.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/chunks/DaX2BNK4.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/E4yxVhQC.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/CVBzP17p.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DYEMNiot.js" rel="modulepreload">
-		<!--e2jw2j--><!----><title>#4471 split · three problems, not one · support kb</title>
+		<!--e2jw2j--><!----><title>#4471 split by problem · support kb</title>
 		<link href="../../../../_app/immutable/assets/runbook.COyw0cbZ.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/Callout.AbLv9dM_.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/_page.iaB3MY4H.css" rel="stylesheet">
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div style="display: contents"><!--[--><!--[--><!--[0--><!--[--><!--[--><!--[-1--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 split · three problems, not one</h1> <p class="meta svelte-e2jw2j"><span>owner <b>ccnklc</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-10-28 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p><a href="/kb/incidents/4471">#4471</a> is marked known: one issue, one fix queued. Its reports hold three
-problems. One fix for the parser leaves the other two in place.</p> <aside class="warn svelte-17bri61"><!---->Not one issue. <strong>412</strong><!----> reports, three problems, three tickets. Every number on this page
+    <div style="display: contents"><!--[--><!--[--><!--[0--><!--[--><!--[--><!--[-1--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 split by problem</h1> <p class="meta svelte-e2jw2j"><span>owner <b>ccnklc</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-10-28 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p><a href="/kb/incidents/4471">#4471</a> is marked known: one issue, one fix queued. Its reports hold</p> <strong>3</strong><!----> problems. One fix for the parser leaves the rest in place. <aside class="warn svelte-17bri61"><!---->Not one issue. <strong>412</strong><!----> reports, <strong>3</strong><!----> problems, one ticket each. Every number on this page
 is computed from the exports in <code>src/lib/data</code> when the page is built.<!----></aside><!----> <h2>The split</h2> <p class="sum svelte-1op6c6"><strong>412</strong> reports merged into #4471 · <strong>3</strong> problems<!--[-1--><!--]--></p> <table><thead><tr><th>problem</th><th>reports</th><th>channels</th><th>tenants</th><th>seen</th><th>ticket</th></tr></thead><tbody><!--[--><tr><td><code>parser</code><br/><span class="what svelte-1op6c6">Shared date parser reads day-first dates month first</span></td><td><strong>374</strong></td><td class="tags svelte-1op6c6">app ×202 · email ×147 · form ×25</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td><!--[0--><a href="https://github.com/ccnklc/support-kb-4471/issues/1">#1</a><!--]--></td></tr><tr><td><code>hint</code><br/><span class="what svelte-1op6c6">booking-v3 form hints MM/DD/YYYY to day-first tenants, then reads the date day first</span></td><td><strong>33</strong></td><td class="tags svelte-1op6c6">form ×33</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td><!--[0--><a href="https://github.com/ccnklc/support-kb-4471/issues/2">#2</a><!--]--></td></tr><tr><td><code>one-day</code><br/><span class="what svelte-1op6c6">Dates move by one day, not day and month swapped</span></td><td><strong>5</strong></td><td class="tags svelte-1op6c6">email ×3 · app ×2</td><td>5</td><td>2026-04-02 → 2026-10-04</td><td><!--[0--><a href="https://github.com/ccnklc/support-kb-4471/issues/3">#3</a><!--]--></td></tr><!--]--></tbody></table><!----> <h2>How each report was placed</h2> <ol><li>One id, one report: the export pages overlap, so repeats are dropped (<code>uniqueById</code>).</li> <li>The desk’s reading comes first. Reports in <code>desk-notes.json</code> → <code>oneDayMove</code> describe a date
 that moved by one day, not a day and month swapped: <code>one-day</code>.</li> <li>Every other report gets its cause from its tenant, never from intake’s tag (<code>causeOf</code> in <code>causes.ts</code>): booking-v3 form reports from day-first tenants are <code>hint</code>, the rest <code>parser</code>.</li></ol> <p>The logic is <code>#lib/kb/problems.ts</code>. Intake’s tag (<code>meta.intakeTag</code>) is a guess from the
 reporter’s browser and disagrees with the tenant often; it is not used.</p> <h2>parser · <strong>374</strong><!----> reports</h2> <p>The shared parser reads every date month first. Our tenants write the day first, so day and
@@ -37,23 +36,23 @@ Monday 11 May” (R-41202), “Client in Lisbon got Tuesday. Client in Toronto g
 meeting.” (R-41344), “Every booking in June is one day off” (R-41209). That points at time zones,
 not date order. The parser fix will not change them, and they were counted under <code>parser</code> on the
 #4471 page.</p> <details class="svelte-ln2l6r"><summary>the 5 reports</summary> <ul><!--[--><li class="svelte-ln2l6r"><code>R-41202</code> · kettle.books · email · 2026-04-02 · “Invite says Tuesday 12 May. Calendar says Monday 11 May. My client turned up on the Monday. We had coffee.”</li><li class="svelte-ln2l6r"><code>R-41209</code> · alder.physio · app · 2026-04-06 · “Every booking in June is one day off. Only June. Why only June.”</li><li class="svelte-ln2l6r"><code>R-41236</code> · nine.lanterns · app · 2026-04-20 · “The invite arrived before I made the booking. I would like to know how.”</li><li class="svelte-ln2l6r"><code>R-41344</code> · pale.harbour · email · 2026-06-12 · “Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice.”</li><li class="svelte-ln2l6r"><code>R-41620</code> · lantern.row · email · 2026-10-04 · “Tuesday 6 October showed as Monday. I moved it myself. I have stopped reporting these but my colleague says it helps you.”</li><!--]--></ul></details><!----> <h2>Why they were merged</h2> <p>Duplicates are found by subject line (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>).
-“Date is wrong” fits all three problems, so subject matching merged them into one ticket.
+A subject does not tell these problems apart: “Date is wrong”, for one, comes in for each of them.
 Matching the cause (tenant, locale, form, channel) keeps them apart: try it on <a href="/kb/triage/dedupe">triage</a>.</p> <h2>Keeping this page true</h2> <p>The desk keeps working. To refresh: put the new export’s <code>src/lib/data</code> files in place
-(<code>scripts/import-export.sh &lt;kb-export.zip></code>) and push. The workflow in <code>.github/workflows</code> rebuilds this page and updates the three tickets’ counts and report lists
+(<code>scripts/import-export.sh &lt;kb-export.zip></code>) and push. The workflow in <code>.github/workflows</code> rebuilds this page and updates the tickets’ counts and report lists
 (<code>scripts/sync-issues.ts</code>). <code>npm run issues:check</code> fails when a ticket no longer matches the data.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-N6XH-CY7M</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!--]--><!--]--><!----><!--]--><!--]--><!--]--><!----> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_4kzkxn = {
+					__sveltekit_nr9upk = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
-						version: "1793193917521"
+						version: "1793194169003"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../../../_app/immutable/entry/start.DvIn9P4M.js").then(async (kit) => {
-						kit.init(__sveltekit_4kzkxn);
-						const app = await import("../../../../_app/immutable/entry/app.BY1ewYmA.js");
+						kit.init(__sveltekit_nr9upk);
+						const app = await import("../../../../_app/immutable/entry/app.Bw_mzS5y.js");
 						kit.start(app, element, {
 							node_ids: [0, 5],
 							data: [null,null],

@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 split · three problems, not one'
+title: '#4471 split by problem'
 owner: ccnklc
 status: proposed
 reviewed: 2026-10-28
@@ -15,11 +15,11 @@ signature: v1.eyJzdWIiOiI3MTE1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its reports hold three
-problems. One fix for the parser leaves the other two in place.
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its reports hold
+<ProblemCount of="problems" /> problems. One fix for the parser leaves the rest in place.
 
 <Callout kind="warn">
-Not one issue. <ProblemCount /> reports, three problems, three tickets. Every number on this page
+Not one issue. <ProblemCount /> reports, <ProblemCount of="problems" /> problems, one ticket each. Every number on this page
 is computed from the exports in <code>src/lib/data</code> when the page is built.
 </Callout>
 
@@ -68,7 +68,7 @@ not date order. The parser fix will not change them, and they were counted under
 ## Why they were merged
 
 Duplicates are found by subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
-"Date is wrong" fits all three problems, so subject matching merged them into one ticket.
+A subject does not tell these problems apart: "Date is wrong", for one, comes in for each of them.
 Matching the cause (tenant, locale, form, channel) keeps them apart: try it on
 [triage](/kb/triage/dedupe).
 
@@ -76,7 +76,7 @@ Matching the cause (tenant, locale, form, channel) keeps them apart: try it on
 
 The desk keeps working. To refresh: put the new export's `src/lib/data` files in place
 (`scripts/import-export.sh <kb-export.zip>`) and push. The workflow in `.github/workflows`
-rebuilds this page and updates the three tickets' counts and report lists
+rebuilds this page and updates the tickets' counts and report lists
 (`scripts/sync-issues.ts`). `npm run issues:check` fails when a ticket no longer matches the data.
 
 <RenderStamp {signature} />
