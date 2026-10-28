@@ -1,0 +1,5 @@
+{
+  "extends": "$app/tsconfig",
+  "include": ["src", "scripts", "*"],
+  "compilerOptions": { "strict": true, "resolveJsonModule": true, "allowImportingTsExtensions": true, "noEmit": true }
+}
