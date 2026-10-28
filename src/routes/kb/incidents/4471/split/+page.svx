@@ -81,8 +81,8 @@ outcome, with a comment that quotes it:
 
 - `parser`: **fixed** by `fix(dates): parse dd/mm for eu locales`. Closed as completed.
 - `hint`: **won't fix**, the booking-v3 form is retired. Closed as not planned.
-- `one-day`: not in the update. The parser fix does not touch a date that moves by one day, so
-  this ticket stays open.
+- `one-day`: the desk files these reports under `parser` by tenant and counts them there, so this
+  ticket closes with parser, as completed.
 
 ## Keeping this page true
 

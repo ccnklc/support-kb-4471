@@ -9,11 +9,11 @@
 		<link href="../../../../_app/immutable/chunks/sxQkd9-p.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/BzmUcuz6.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/C79-miaL.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/entry/app.LKfHoeYN.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/entry/app.yMA9T7xs.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/nodes/0.Cp_o1mrA.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/nodes/5.CYl0tCSx.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/chunks/DYDFRShf.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/nodes/5.Daxu-89_.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/chunks/D1m0fz8J.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/Dp1zse3R.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/CVBzP17p.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DG4s26fp.js" rel="modulepreload">
@@ -41,23 +41,23 @@ not date order. The parser fix will not change them. The desk files them under <
 so they count there too.</p> <details class="svelte-ln2l6r"><summary>the 5 reports</summary> <ul><!--[--><li class="svelte-ln2l6r"><code>R-41202</code> · kettle.books · email · 2026-04-02 · “Invite says Tuesday 12 May. Calendar says Monday 11 May. My client turned up on the Monday. We had coffee.”</li><li class="svelte-ln2l6r"><code>R-41209</code> · alder.physio · app · 2026-04-06 · “Every booking in June is one day off. Only June. Why only June.”</li><li class="svelte-ln2l6r"><code>R-41236</code> · nine.lanterns · app · 2026-04-20 · “The invite arrived before I made the booking. I would like to know how.”</li><li class="svelte-ln2l6r"><code>R-41344</code> · pale.harbour · email · 2026-06-12 · “Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice.”</li><li class="svelte-ln2l6r"><code>R-41620</code> · lantern.row · email · 2026-10-04 · “Tuesday 6 October showed as Monday. I moved it myself. I have stopped reporting these but my colleague says it helps you.”</li><!--]--></ul></details><!----> <h2>Why they were merged</h2> <p>Duplicates are found by subject line (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>).
 A subject does not tell these problems apart: “Date is wrong”, for one, comes in for each of them.
 Matching the cause (tenant, locale, form, channel) keeps them apart: try it on <a href="/kb/triage/dedupe">triage</a>.</p> <h2>Where the tickets went</h2> <p>Engineering closed #4471 on 5 October, with an outcome per problem. Each ticket follows that
-outcome, with a comment that quotes it:</p> <ul><li><code>parser</code>: <strong>fixed</strong> by <code>fix(dates): parse dd/mm for eu locales</code>. Closed as completed.</li> <li><code>hint</code>: <strong>won’t fix</strong>, the booking-v3 form is retired. Closed as not planned.</li> <li><code>one-day</code>: not in the update. The parser fix does not touch a date that moves by one day, so
-this ticket stays open.</li></ul> <h2>Keeping this page true</h2> <p>The desk keeps working. To refresh: put the new export’s <code>src/lib/data</code> files in place
+outcome, with a comment that quotes it:</p> <ul><li><code>parser</code>: <strong>fixed</strong> by <code>fix(dates): parse dd/mm for eu locales</code>. Closed as completed.</li> <li><code>hint</code>: <strong>won’t fix</strong>, the booking-v3 form is retired. Closed as not planned.</li> <li><code>one-day</code>: the desk files these reports under <code>parser</code> by tenant and counts them there, so this
+ticket closes with parser, as completed.</li></ul> <h2>Keeping this page true</h2> <p>The desk keeps working. To refresh: put the new export’s <code>src/lib/data</code> files in place
 (<code>scripts/import-export.sh &lt;kb-export.zip></code>) and push. The workflow in <code>.github/workflows</code> rebuilds this page and updates the tickets’ counts and report lists
 (<code>scripts/sync-issues.ts</code>). <code>npm run issues:check</code> fails when a ticket no longer matches the data.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-N6XH-CY7M</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!--]--><!--]--><!----><!--]--><!--]--><!--]--><!----> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1cir9ef = {
+					__sveltekit_1n5i0gk = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
-						version: "1793212962561"
+						version: "1793213118423"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../../../_app/immutable/entry/start.PZr5pBf8.js").then(async (kit) => {
-						kit.init(__sveltekit_1cir9ef);
-						const app = await import("../../../../_app/immutable/entry/app.LKfHoeYN.js");
+						kit.init(__sveltekit_1n5i0gk);
+						const app = await import("../../../../_app/immutable/entry/app.yMA9T7xs.js");
 						kit.start(app, element, {
 							node_ids: [0, 5],
 							data: [null,null],
