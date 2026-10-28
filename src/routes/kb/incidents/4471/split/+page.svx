@@ -19,8 +19,8 @@ signature: v1.eyJzdWIiOiI3MTE1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 <ProblemCount of="problems" /> problems. One fix for the parser leaves the rest in place.
 
 <Callout kind="warn">
-Not one issue. <ProblemCount /> reports, <ProblemCount of="problems" /> problems: each was filed as a ticket, counted, then merged
-back the desk's way (below). Every number on this page
+Not one issue. <ProblemCount /> reports, <ProblemCount of="problems" /> problems: each was filed as a ticket and
+counted; where each one went is below. Every number on this page
 is computed from the exports in <code>src/lib/data</code> when the page is built.
 </Callout>
 
@@ -63,7 +63,7 @@ These dates did not swap. They moved by one day: "Invite says Tuesday 12 May. Ca
 Monday 11 May" (R-41202), "Client in Lisbon got Tuesday. Client in Toronto got Monday. Same
 meeting." (R-41344), "Every booking in June is one day off" (R-41209). That points at time zones,
 not date order. The parser fix will not change them. The desk files them under `parser` by tenant,
-so they count there too, and their ticket merges into the parser ticket.
+so they count there too.
 
 <ProblemReports problem="one-day" />
 
@@ -76,13 +76,13 @@ Matching the cause (tenant, locale, form, channel) keeps them apart: try it on
 
 ## Where the tickets went
 
-The desk closes a ticket by merging it into an open one and keeping the count
-([triage](/kb/triage/dedupe): "merge every duplicate into it, so engineering sees one thread with a count").
-Each ticket was closed that way, with a comment that names where it went:
+Engineering closed #4471 on 5 October, with an outcome per problem. Each ticket follows that
+outcome, with a comment that quotes it:
 
-- `one-day` → the `parser` ticket, where the desk files these reports by tenant (`readAs`).
-- `parser` → #4471, the desk's ticket for this cause (`ticketCause`).
-- `hint` → #4471: the desk has no ticket of its own for it yet.
+- `parser`: **fixed** by `fix(dates): parse dd/mm for eu locales`. Closed as completed.
+- `hint`: **won't fix**, the booking-v3 form is retired. Closed as not planned.
+- `one-day`: not in the update. The parser fix does not touch a date that moves by one day, so
+  this ticket stays open.
 
 ## Keeping this page true
 
